@@ -49,7 +49,7 @@ int main()
                      infile >> screen[i][j];
                 }
 
-        floodFill(screen, 301, 740, 0);
+        floodFill(screen, 230, 890, 0);
 
         outfile.open("flooddata");
         for(i=0;i<600;i++)
@@ -57,7 +57,7 @@ int main()
             for(j=0;j<900;j++)
                 {
                      outfile << screen[i][j] << " ";
-                }
+               }
                      outfile << endl; 
            }
 }
