@@ -12,10 +12,16 @@ int main ()
 
   int lat, lon;
 
+  char filename[100];
   char key; 
   //int count = 1;
+
+
+  cout << "enter the filename" << endl;
+  cin >> filename; 
+ 
   fstream infile;
-  infile.open ("10km_wet_data");
+  infile.open (filename);
   for(i=0;i<600;i++)
    for(j=0;j<900;j++)
    {
