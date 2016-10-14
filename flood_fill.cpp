@@ -16,7 +16,7 @@ void floodFillUtil(int screen[][N], int x, int y, int prevC, int newC)
 		return;
 
 	// Replace the color at (x, y)
-        cout << y << "\t," << x << "\t,0" << endl;  
+        cout << y+1 << "\t," << x+1 << "\t," << newC << endl;  
 	screen[x][y] = newC;
 
 	// Recur for north, east, south and west
@@ -30,7 +30,16 @@ void floodFillUtil(int screen[][N], int x, int y, int prevC, int newC)
 // calls floodFillUtil()
 void floodFill(int screen[][N], int x, int y, int newC)
 {
-	int prevC = screen[x][y];
+	int prevC;
+        x = x-1;
+        y = y-1;
+        prevC = screen[x][y]; // lat long
+        cout << "Correct Cooridinates are " << x << " " << y << endl;
+        if( prevC == newC )
+        {
+        cout << "Incorrect point";
+        return;     
+        }
 	floodFillUtil(screen, x, y, prevC, newC);
 }
 
@@ -38,20 +47,25 @@ int main()
 {
 	int screen[M][N];
         int i,j,count=1;
+        int x,y,newC; 
         ifstream infile;
         ofstream outfile;
         char filename[100];
 
-        infile.open ("eastern_island_wet_data");
+        infile.open ("flooddata");
         for(i=0;i<600;i++)
             for(j=0;j<900;j++)
                 {
                      infile >> screen[i][j];
                 }
+        
+        cout << "enter the seed point"<< endl;
+        cin >> x >> y;
+        cout << "enter the new color"<< endl;
+        cin >> newC;
+        floodFill(screen, x, y, newC);
 
-        floodFill(screen, 230, 890, 0);
-
-        outfile.open("flooddata");
+        /*outfile.open("flooddata");
         for(i=0;i<600;i++)
            { 
             for(j=0;j<900;j++)
@@ -59,5 +73,5 @@ int main()
                      outfile << screen[i][j] << " ";
                }
                      outfile << endl; 
-           }
+           }*/
 }
